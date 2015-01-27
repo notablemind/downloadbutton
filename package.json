@@ -20,5 +20,13 @@
   "bugs": {
     "url": "https://github.com/notablemind/react-download/issues"
   },
-  "homepage": "https://github.com/notablemind/react-download"
+  "homepage": "https://github.com/notablemind/react-download",
+  "devDependencies": {
+    "jstransform": "^8.2.0",
+    "react": "^0.12.2",
+    "reactify": "^1.0.0"
+  },
+  "dependencies": {
+    "envify": "^3.2.0"
+  }
 }
