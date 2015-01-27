@@ -18,7 +18,6 @@ scripts:
   - https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.0/js/materialize.min.js
 links:
   home: ./
-  docs: docs.html
   github: https://github.com/notablemind/react-downloadbutton
 
 ---
