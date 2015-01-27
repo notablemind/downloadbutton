@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf8">
+<title>Download Button</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.11.0/codemirror.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.11.0/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.11.0/mode/javascript/javascript.min.js"></script>
+
+<script src="https://jaredly.github.io/demobox/react.js"></script>
+<script src="https://jaredly.github.io/demobox/demobox-xreact.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+
+<link rel="stylesheet" href="https://jaredly.github.io/demobox/demobox.css">
+<link rel="stylesheet" href="https://jaredly.github.io/demobox/theme.css">
+
+<link href="https://fonts.googleapis.com/css?family=Fugaz+One|Monda" rel="stylesheet"/>
+<style>
+
+#header {
+    font-family: "Fugaz One", sans-serif;
+}
+
+#main {
+    font-family: "Monda", serif;
+}
+
+#header {
+    background-color: #e91e63;
+}
+
+#header .subtitle {
+    color: #fce4ec;
+}
+
+.link {
+    background-color: #880e4f;
+}
+
+.link:hover {
+    background-color: #c2185b;
+}
+
+.DemoBox_head {
+    background-color: #e91e63;
+    color: white;
+}
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.0/css/materialize.min.css">
+<script src="download-button.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.0/js/materialize.min.js"></script>
+
+
+<script></script>
+<style>.DownloadButton {
+  font-size: 16px;
+  font-family: sans-serif;
+}</style>
+</head>
+<body>
+
+
+<header id="header">
+    <div class="title">
+        Download Button
+    </div>
+    <div class="subtitle">
+        
+    </div>
+
+    <a class="link" href="./">home</a>
+<a class="link" href="https://github.com/notablemind/react-downloadbutton">github</a>
+</header>
+
+<section id="main">
+<p>DownloadButton is a simple component for letting the user <strong>download a
+javascript-generated file.</strong> It was extracted from
+<a href="https://github.com/notablemind/notablemind">Notablemind</a>.</p>
+<p>The styling is due to <a href="http://materializecss.com/">materializecss</a>, and does
+not come with the <code>DownloadButton</code> component. In some examples,
+<a href="http://fortawesome.github.io/Font-Awesome/">FontAwesome</a> icons are also used.
+ You are free to style the component however you wish.</p>
+<textarea data-demobox height="150" output="true" position="right" lang="jsx">
+function makeFile() {
+  // do some calculations
+  return {
+    mime: 'text/plain',
+    filename: 'myexportedfile.txt',
+    contents: 'all of the exports',
+  }
+}
+
+
+&lt;DownloadButton
+  // these classes come from materializecss
+  className='waves-effect waves-light btn' 
+  genFile={makeFile}/>
+</textarea><p>You can also use an asynchronous function to generate the file.</p>
+<textarea data-demobox height="150" output="true" position="right" lang="jsx">
+function genFile(done) {
+  setTimeout(function () {
+    done({
+      mime: 'text/html',
+      filename: 'generated.html',
+      contents: `&lt;!doctype html>&lt;html>
+  &lt;h1>Hello wordl!&lt;/h1>
+&lt;/html>`,
+    })
+  }, 3000);
+}
+var loading = &lt;span>
+  Crunching hard numbers
+  &lt;i className="fa fa-circle-o-notch fa-spin right"/>
+&lt;/span>;
+var download = fileData => 'Download ' + fileData.filename;
+
+
+&lt;div style={{textAlign: 'center'}}>
+
+  &lt;p>Default titles&lt;/p>
+
+  &lt;DownloadButton
+    className='waves-effect waves-light btn' 
+    async={true} genFile={genFile}/>
+
+  &lt;p>Custom titles&lt;/p>
+
+  &lt;DownloadButton
+    className='waves-effect waves-light btn' 
+    generateTitle={'Click me please'}
+    loadingTitle={loading}
+    downloadTitle={download}
+    async={true}
+    genFile={genFile}/>
+
+&lt;/div>
+</textarea><p>If you already have the file computed, just pass it in as props.</p>
+<textarea data-demobox height="150" output="true" position="right" lang="jsx">
+var fileData = {
+  filename: 'hello.txt',
+  contents: 'Hello download!',
+  mime: 'text/plain',
+};
+var title = &lt;span>
+  Download File
+  &lt;i className="mdi-file-file-download right"/>
+&lt;/span>;
+
+
+&lt;DownloadButton
+  className='waves-effect waves-light btn' 
+  downloadTitle={title}
+  fileData={fileData}/>
+</textarea></section>
+
+</body>
+</html>
