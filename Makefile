@@ -7,7 +7,7 @@ pages:
 	rsync build/* pages/ -rLu
 
 build-pages:
-	lessc -x run.less build/download-button.min.css
+	# lessc -x run.less build/download-button.min.css
 	browserify ${ARGS} -d index.js | uglifyjs --screw-ie8 > build/download-button.min.js
 
 vendor:
@@ -21,6 +21,10 @@ watch:
 
 css:
 	lessc run.less build/download-button.css
+
+gh-pages: pages
+	cd pages && git add . && git commit -am'update pages' && git push
+
 
 
 .PHONY: css watch js all start-ipython pages vendor vendorlib

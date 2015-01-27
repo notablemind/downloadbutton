@@ -4,6 +4,7 @@ title: Download Button
 xreact: true
 colors: pink
 fontPair: Fugaz One
+ga: UA-7002862-5
 css: |
   .DownloadButton {
     font-size: 16px;
@@ -17,11 +18,15 @@ scripts:
   - https://code.jquery.com/jquery-2.1.1.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.0/js/materialize.min.js
 links:
-  home: ./
+  home:
   github: https://github.com/notablemind/react-downloadbutton
 
 ---
 -->
+
+<!-- @demobox hide -->
+View this page rendered at [notablemind.github.io/react-downloadbutton](http://notablemind.github.io/react-downloadbutton)
+<!-- @demobox /hide -->
 
 DownloadButton is a simple component for letting the user **download a
 javascript-generated file.** It was extracted from
