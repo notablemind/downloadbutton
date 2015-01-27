@@ -5,6 +5,7 @@ xreact: true
 colors: pink
 fontPair: Fugaz One
 ga: UA-7002862-5
+source: https://github.com/notablemind/react-downloadbutton/raw/master/Readme.md
 css: |
   .DownloadButton {
     font-size: 16px;
