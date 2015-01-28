@@ -2,14 +2,14 @@
 <html>
 <head>
 <meta charset="utf8">
-<title>Download Button</title>
+<title>DownloadButton Demos</title>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.11.0/codemirror.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.11.0/codemirror.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.11.0/mode/javascript/javascript.min.js"></script>
 
 <script src="https://jaredly.github.io/demobox/react.js"></script>
-<script src="https://jaredly.github.io/demobox/demobox-xreact.js"></script>
+<script src="https://jaredly.github.io/demobox/demobox.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
 
@@ -72,24 +72,28 @@
 
 <header id="header">
     <div class="title">
-        Download Button
+        DownloadButton Demos
     </div>
     <div class="subtitle">
         
     </div>
 
     <a class="link" href="">home</a>
-<a class="link" href="https://github.com/notablemind/react-downloadbutton">github</a>
+<a class="link" href="demo.html">demos</a>
+<a class="link" href="https://github.com/notablemind/downloadbutton">github</a>
 </header>
 
 <section id="main">
 <p>DownloadButton is a simple component for letting the user <strong>download a
 javascript-generated file.</strong> It was extracted from
-<a href="https://github.com/notablemind/notablemind">Notablemind</a>.</p>
-<p>The styling is due to <a href="http://materializecss.com/">materializecss</a>, and does
-not come with the <code>DownloadButton</code> component. In some examples,
-<a href="http://fortawesome.github.io/Font-Awesome/">FontAwesome</a> icons are also used.
- You are free to style the component however you wish.</p>
+<a href="https://github.com/notablemind/notablemind" target="_blank">Notablemind</a>.</p>
+<p>The styling is due to <a href="http://materializecss.com/" target="_blank">materializecss</a>, and does
+not come with the <code>DownloadButton</code> component. You are free to style the
+component however you wish.</p>
+
+<a name="demo"></a>
+<section>
+<h2><a href="#demo">Demo</a></h2>
 <textarea data-demobox height="150" output="true" position="right" lang="jsx">
 function makeFile() {
   // do some calculations
@@ -105,66 +109,117 @@ function makeFile() {
   // these classes come from materializecss
   className='waves-effect waves-light btn' 
   genFile={makeFile}/>
-</textarea><p>You can also use an asynchronous function to generate the file.</p>
-<textarea data-demobox height="150" output="true" position="right" lang="jsx">
-function genFile(done) {
-  setTimeout(function () {
-    done({
-      mime: 'text/html',
-      filename: 'generated.html',
-      contents: `&lt;!doctype html>&lt;html>
-  &lt;h1>Hello wordl!&lt;/h1>
-&lt;/html>`,
-    })
-  }, 3000);
+</textarea><p>For more demos, see <a href="demo.html">the demo page</a>.</p>
+</section>
+
+<a name="node-start"></a>
+<section>
+<h2><a href="#node-start">Node Start</a></h2>
+<pre><code class="bash">npm install --save downloadbutton
+</code></pre>
+<pre><code class="js"><span class="hljs-keyword">var</span> DownloadButton = <span class="hljs-built_in">require</span>(<span class="hljs-string">'downloadbutton'</span>)
+
+<span class="hljs-comment">// use it somewhere!</span>
+</code></pre>
+<p>If you&#39;re not using browserify, you&#39;ll need to use the precompiled version, as
+the source is written using <code>jsx</code> and <code>es6</code> syntax.</p>
+<pre><code class="js"><span class="hljs-keyword">var</span> DownloadButton = <span class="hljs-built_in">require</span>(<span class="hljs-string">'downloadbutton/es5'</span>)
+
+<span class="hljs-comment">// use it</span>
+</code></pre>
+</section>
+
+<a name="api"></a>
+<section>
+<h2><a href="#api">API</a></h2>
+
+<a name="props"></a>
+<section>
+<h3><a href="#props">Props</a></h3>
+<p><a href="https://notablemind.github.io/downloadbutton/demo.html" target="_blank">view demo</a></p>
+<p>When <code>async=true</code>, the behavior is differnet. See the next section. See a demo
+on <a href="demo.html">the demo page</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fileData</code></td>
+<td><code>fileData</code></td>
+<td>If passed in, genFile will be ignored, and this file will be served.</td>
+</tr>
+<tr>
+<td><code>genFile</code></td>
+<td><code>fn () -&gt; fileData</code> or <code>fn (done: fn(fileData))</code></td>
+<td>Synchronous functions can just return the <code>fileData</code> object. If the <code>async</code> prop is <code>true</code>, then <code>genFile</code> should accept a callback function.</td>
+</tr>
+<tr>
+<td><code>downloadTitle</code></td>
+<td><code>string</code> or react element, or <code>fn (fileData) -&gt; string / react element</code></td>
+<td>The text shown on the button. If a function, it will be passed the <code>fileData</code> in the case that it has been passed in as props. Default: <code>&quot;Download&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<p>You must pass in either <code>fileData</code> or <code>genFile</code>.</p>
+</section>
+
+<a name="props--async-true-"></a>
+<section>
+<h3><a href="#props--async-true-">Props (async=true)</a></h3>
+<p><a href="https://notablemind.github.io/downloadbutton/demo.html#asynchronous-generation" target="_blank">view demo</a></p>
+<p>If <code>fileData</code> is passed in, the <code>async</code> prop is <strong>ignored</strong>, and the component
+will use the synchronous behavior.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>async</code></td>
+<td><code>bool</code></td>
+<td>Set to true if <code>genFile</code> is an async function. Default: false.</td>
+</tr>
+<tr>
+<td><code>generateTitle</code></td>
+<td><code>string</code> or react element</td>
+<td>The text shown initially. Default: <code>&quot;Generate file&quot;</code></td>
+</tr>
+<tr>
+<td><code>loadingTitle</code></td>
+<td><code>string</code> or react element</td>
+<td>The text shown while the file is being generated. Default: <code>&quot;Loading...&quot;</code></td>
+</tr>
+<tr>
+<td><code>downloadTitle</code></td>
+<td><code>string</code> or react element, or <code>fn (fileData) -&gt; string / react element</code></td>
+<td>The text shown on the button. If a function, it will be passed the generated <code>fileData</code>. Default: <code>&quot;Download&quot;</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<a name="the-filedata-type"></a>
+<section>
+<h3><a href="#the-filedata-type">The <code>fileData</code> type</a></h3>
+<pre><code class="json">{
+  mime: str,
+  filename: str,
+  content: str
 }
-var loading = &lt;span>
-  Crunching hard numbers
-  &lt;i className="fa fa-circle-o-notch fa-spin right"/>
-&lt;/span>;
-var download = fileData => 'Download ' + fileData.filename;
-
-
-&lt;div style={{textAlign: 'center'}}>
-
-  &lt;p>Default titles&lt;/p>
-
-  &lt;DownloadButton
-    className='waves-effect waves-light btn' 
-    async={true} genFile={genFile}/>
-
-  &lt;p>Custom titles&lt;/p>
-
-  &lt;DownloadButton
-    className='waves-effect waves-light btn' 
-    generateTitle={'Click me please'}
-    loadingTitle={loading}
-    downloadTitle={download}
-    async={true}
-    genFile={genFile}/>
-
-&lt;/div>
-</textarea><p>If you already have the file computed, just pass it in as props.</p>
-<textarea data-demobox height="150" output="true" position="right" lang="jsx">
-var fileData = {
-  filename: 'hello.txt',
-  contents: 'Hello download!',
-  mime: 'text/plain',
-};
-var title = &lt;span>
-  Download File
-  &lt;i className="mdi-file-file-download right"/>
-&lt;/span>;
-
-
-&lt;DownloadButton
-  className='waves-effect waves-light btn' 
-  downloadTitle={title}
-  fileData={fileData}/>
-</textarea></section>
+</code></pre>
+</section>
 <footer>
     <p>page rendered with <a href="https://jaredly.github.io/demobox">demobox</a></p>
-    <p>view the <a href="https://github.com/notablemind/react-downloadbutton/raw/master/Readme.md">markdown source</a> for this page</p>
+    <p>view the <a href="https://github.com/notablemind/downloadbutton/raw/master/Readme.md">markdown source</a> for this page</p>
 </footer>
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
