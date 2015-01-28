@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf8">
-<title>DownloadButton</title>
+<title>DownloadButton Demos</title>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.11.0/codemirror.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.11.0/codemirror.min.js"></script>
@@ -72,7 +72,7 @@
 
 <header id="header">
     <div class="title">
-        DownloadButton
+        DownloadButton Demos
     </div>
     <div class="subtitle">
         
@@ -87,7 +87,7 @@
 
 <a name="default-settings--synchronous-generation"></a>
 <section>
-<h2><a href="#default-settings--synchronous-generation">Default settings, synchronous generation</a></h2>
+<h3><a href="#default-settings--synchronous-generation">Default settings, synchronous generation</a></h3>
 <textarea data-demobox height="150" output="true" position="right" lang="jsx">
 function makeFile() {
   // do some calculations
@@ -107,7 +107,7 @@ function makeFile() {
 
 <a name="asynchronous-generation"></a>
 <section>
-<h2><a href="#asynchronous-generation">Asynchronous generation</a></h2>
+<h3><a href="#asynchronous-generation">Asynchronous generation</a></h3>
 <p>You can also use an asynchronous function to generate the file.</p>
 <textarea data-demobox height="150" output="true" position="right" lang="jsx">
 function genFile(done) {
@@ -151,7 +151,7 @@ var download = fileData => 'Download ' + fileData.filename;
 
 <a name="pre-computed-file-data"></a>
 <section>
-<h2><a href="#pre-computed-file-data">Pre-computed file data</a></h2>
+<h3><a href="#pre-computed-file-data">Pre-computed file data</a></h3>
 <p>If you already have the file computed, just pass it in as props.</p>
 <textarea data-demobox height="150" output="true" position="right" lang="jsx">
 var fileData = {
