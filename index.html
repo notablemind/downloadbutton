@@ -137,8 +137,8 @@ the source is written using <code>jsx</code> and <code>es6</code> syntax.</p>
 <section>
 <h3><a href="#props">Props</a></h3>
 <p><a href="https://notablemind.github.io/downloadbutton/demo.html" target="_blank">view demo</a></p>
-<p>When <code>async=true</code>, the behavior is differnet. See the next section. See a demo
-on <a href="demo.html">the demo page</a>.</p>
+<p>If you generate the file asynchronously, you need to set <code>async</code> to true, and
+use the next section.</p>
 <table>
 <thead>
 <tr>
@@ -155,8 +155,8 @@ on <a href="demo.html">the demo page</a>.</p>
 </tr>
 <tr>
 <td><code>genFile</code></td>
-<td><code>fn () -&gt; fileData</code> or <code>fn (done: fn(fileData))</code></td>
-<td>Synchronous functions can just return the <code>fileData</code> object. If the <code>async</code> prop is <code>true</code>, then <code>genFile</code> should accept a callback function.</td>
+<td><code>fn () -&gt; fileData</code></td>
+<td>Synchronously generate the file data. See <a href="#the-filedata-type">below</a> for a description of the <code>fileData</code> type</td>
 </tr>
 <tr>
 <td><code>downloadTitle</code></td>
@@ -172,8 +172,8 @@ on <a href="demo.html">the demo page</a>.</p>
 <section>
 <h3><a href="#props--async-true-">Props (async=true)</a></h3>
 <p><a href="https://notablemind.github.io/downloadbutton/demo.html#asynchronous-generation" target="_blank">view demo</a></p>
-<p>If <code>fileData</code> is passed in, the <code>async</code> prop is <strong>ignored</strong>, and the component
-will use the synchronous behavior.</p>
+<p>If <code>fileData</code> is passed in as a prop, the <code>async</code> prop is <strong>ignored</strong>, and the
+component will use the synchronous behavior.</p>
 <table>
 <thead>
 <tr>
