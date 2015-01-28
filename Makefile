@@ -25,7 +25,14 @@ css:
 gh-pages: pages
 	cd pages && git add . && git commit -am'update pages' && git push
 
+es5:
+	mkdir -p es5
+	@mkdir -p es6
+	@cp index.js save-as.js es6
+	jsx --harmony es6 es5
+	@rm -rf es6
 
 
-.PHONY: css watch js all start-ipython pages vendor vendorlib
+
+.PHONY: css watch js all start-ipython pages vendor vendorlib es5
 

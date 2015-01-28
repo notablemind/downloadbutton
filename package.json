@@ -1,5 +1,5 @@
 {
-  "name": "react-download",
+  "name": "downloadbutton",
   "version": "1.0.0",
   "description": "A component to download a js-generated file",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/notablemind/react-download.git"
+    "url": "https://github.com/notablemind/downloadbutton.git"
   },
   "keywords": [
     "react",
@@ -18,15 +18,17 @@
   "author": "Jared Forsyth <jared@jaredforsyth.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/notablemind/react-download/issues"
+    "url": "https://github.com/notablemind/downloadbutton/issues"
   },
-  "homepage": "https://github.com/notablemind/react-download",
-  "devDependencies": {
+  "homepage": "https://notablemind.github.io/downloadbutton",
+  "browserify": {
+    "transform": [
+      ["reactify", {"es6": true, "everything": true, "visitors": ["jstransform/visitors/es6-destructuring-visitors"]}]
+    ]
+  },
+  "dependencies": {
     "jstransform": "^8.2.0",
     "react": "^0.12.2",
     "reactify": "^1.0.0"
-  },
-  "dependencies": {
-    "envify": "^3.2.0"
   }
 }

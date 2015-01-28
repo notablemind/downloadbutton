@@ -1,11 +1,10 @@
 <!--
 ---
-title: Download Button
-xreact: true
+title: DownloadButton Demos
 colors: pink
 fontPair: Fugaz One
 ga: UA-7002862-5
-source: https://github.com/notablemind/react-downloadbutton/raw/master/Readme.md
+source: https://github.com/notablemind/downloadbutton/raw/master/Readme.md
 css: |
   .DownloadButton {
     font-size: 16px;
@@ -20,13 +19,14 @@ scripts:
   - https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.0/js/materialize.min.js
 links:
   home:
-  github: https://github.com/notablemind/react-downloadbutton
+  demos: demo.html
+  github: https://github.com/notablemind/downloadbutton
 
 ---
 -->
 
 <!-- @demobox hide -->
-View this page rendered at [notablemind.github.io/react-downloadbutton](http://notablemind.github.io/react-downloadbutton)
+View this page rendered at [notablemind.github.io/downloadbutton](http://notablemind.github.io/downloadbutton)
 <!-- @demobox /hide -->
 
 DownloadButton is a simple component for letting the user **download a
@@ -34,9 +34,10 @@ javascript-generated file.** It was extracted from
 [Notablemind](https://github.com/notablemind/notablemind).
 
 The styling is due to [materializecss](http://materializecss.com/), and does
-not come with the `DownloadButton` component. In some examples,
-[FontAwesome](http://fortawesome.github.io/Font-Awesome/) icons are also used.
- You are free to style the component however you wish.
+not come with the `DownloadButton` component. You are free to style the
+component however you wish.
+
+## Demo
 
 ```jsx
 // @demobox
@@ -56,67 +57,69 @@ function makeFile() {
   genFile={makeFile}/>
 ```
 
-You can also use an asynchronous function to generate the file.
+For more demos, see [the demo page](demo.md).
 
-```jsx
-// @demobox
-function genFile(done) {
-  setTimeout(function () {
-    done({
-      mime: 'text/html',
-      filename: 'generated.html',
-      contents: `<!doctype html><html>
-  <h1>Hello wordl!</h1>
-</html>`,
-    })
-  }, 3000);
+## Node Start
+
+```bash
+npm install --save downloadbutton
+```
+
+```js
+var DownloadButton = require('downloadbutton')
+
+// use it somewhere!
+```
+
+If you're not using browserify, you'll need to use the precompiled version, as
+the source is written using `jsx` and `es6` syntax.
+
+```js
+var DownloadButton = require('downloadbutton/es5')
+
+// use it
+```
+
+## API
+
+### Props
+[view demo](https://notablemind.github.io/downloadbutton/demo.html)
+
+When `async=true`, the behavior is differnet. See the next section. See a demo
+on [the demo page](demo.md).
+
+Name | Type | Description
+--- | --- | ---
+`fileData` | `fileData` | If passed in, genFile will be ignored, and this file will be served.
+`genFile` | `fn () -> fileData` or `fn (done: fn(fileData))` | Synchronous functions can just return the `fileData` object. If the `async` prop is `true`, then `genFile` should accept a callback function.
+`downloadTitle` | `string` or react element, or `fn (fileData) -> string / react element` | The text shown on the button. If a function, it will be passed the `fileData` in the case that it has been passed in as props. Default: `"Download"`
+
+You must pass in either `fileData` or `genFile`.
+
+### Props (async=true)
+[view demo](https://notablemind.github.io/downloadbutton/demo.html#asynchronous-generation)
+
+If `fileData` is passed in, the `async` prop is **ignored**, and the component
+will use the synchronous behavior.
+
+Name | Type | Description
+--- | --- | ---
+`async` | `bool` | Set to true if `genFile` is an async function. Default: false.
+`generateTitle` | `string` or react element | The text shown initially. Default: `"Generate file"`
+`loadingTitle` | `string` or react element | The text shown while the file is being generated. Default: `"Loading..."`
+`downloadTitle` | `string` or react element, or `fn (fileData) -> string / react element` | The text shown on the button. If a function, it will be passed the generated `fileData`. Default: `"Download"`
+
+### The `fileData` type
+
+```json
+{
+  mime: str,
+  filename: str,
+  content: str
 }
-var loading = <span>
-  Crunching hard numbers
-  <i className="fa fa-circle-o-notch fa-spin right"/>
-</span>;
-var download = fileData => 'Download ' + fileData.filename;
-
-
-<div style={{textAlign: 'center'}}>
-
-  <p>Default titles</p>
-
-  <DownloadButton
-    className='waves-effect waves-light btn' 
-    async={true} genFile={genFile}/>
-
-  <p>Custom titles</p>
-
-  <DownloadButton
-    className='waves-effect waves-light btn' 
-    generateTitle={'Click me please'}
-    loadingTitle={loading}
-    downloadTitle={download}
-    async={true}
-    genFile={genFile}/>
-
-</div>
 ```
 
-If you already have the file computed, just pass it in as props.
-
-```jsx
-// @demobox
-var fileData = {
-  filename: 'hello.txt',
-  contents: 'Hello download!',
-  mime: 'text/plain',
-};
-var title = <span>
-  Download File
-  <i className="mdi-file-file-download right"/>
-</span>;
 
 
-<DownloadButton
-  className='waves-effect waves-light btn' 
-  downloadTitle={title}
-  fileData={fileData}/>
-```
+
 
