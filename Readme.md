@@ -27,6 +27,8 @@ links:
 
 <!-- @demobox hide -->
 View this page rendered at [notablemind.github.io/downloadbutton](http://notablemind.github.io/downloadbutton)
+
+[![screenshot](screenshot.png)](http://notablemind.github.io/downloadbutton)
 <!-- @demobox /hide -->
 
 DownloadButton is a simple component for letting the user **download a
@@ -91,8 +93,8 @@ use the next section.
 Name | Type | Description
 --- | --- | ---
 `fileData` | [fileData](#the-filedata-type) | If passed in, genFile will be ignored, and this file will be served.
-`genFile` | `fn () ->` [fileData](#the-filedata-type) | Synchronously generate the file data. See [below](#the-filedata-type) for a description of the `fileData` type
-`downloadTitle` | `string` or react element, or `fn (fileData) -> string / react element` | The text shown on the button. If a function, it will be passed the `fileData` in the case that it has been passed in as props. Default: `"Download"`
+`genFile` | `fn () -> fileData` | Synchronously generate the file data. See [below](#the-filedata-type) for a description of the `fileData` type
+`downloadTitle` | `string` or react element, or `fn (fileData) -> string / react element` | The text shown on the button. If a function, it will be passed the `fileData` (if it has been passed in as props). Default: `"Download"`
 
 You must pass in either `fileData` or `genFile`.
 
@@ -105,9 +107,10 @@ component will use the synchronous behavior.
 Name | Type | Description
 --- | --- | ---
 `async` | `bool` | Set to true if `genFile` is an async function. Default: false.
+`genFile` | `fn (done: fn (fileData))` | `genFile` is an async function that receives the callback as its only argument. The callback must be called with a `fileData` object.
 `generateTitle` | `string` or react element | The text shown initially. Default: `"Generate file"`
 `loadingTitle` | `string` or react element | The text shown while the file is being generated. Default: `"Loading..."`
-`downloadTitle` | `string` or react element, or `fn (fileData) -> string / react element` | The text shown on the button. If a function, it will be passed the generated `fileData`. Default: `"Download"`
+`downloadTitle` | `string` or react element, or `fn (fileData) -> string / react element` | The text shown once the file has been generated. If a function, it will be passed the generated `fileData`. Default: `"Download"`
 
 ### The `fileData` type
 
