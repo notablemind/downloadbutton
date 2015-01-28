@@ -1,5 +1,5 @@
 
-ARGS=-t [ reactify --es6 --everything --visitors jstransform/visitors/es6-destructuring-visitors ] -x react/addons
+ARGS=-t [ reactify --es6 --everything --visitors jstransform/visitors/es6-destructuring-visitors ] -x react/addons -x react
 
 all: js css
 
@@ -21,6 +21,10 @@ watch:
 
 css:
 	lessc run.less build/download-button.css
+
+docs:
+	demobox -i Readme.md -o pages/index.html
+	demobox -i demo.md -o pages/demo.html
 
 gh-pages: pages
 	cd pages && git add . && git commit -am'update pages' && git push

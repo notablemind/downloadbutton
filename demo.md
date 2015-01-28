@@ -1,6 +1,6 @@
 <!--
 ---
-title: DownloadButton
+title: DownloadButton Demos
 colors: pink
 fontPair: Fugaz One
 ga: UA-7002862-5
@@ -25,7 +25,7 @@ links:
 ---
 -->
 
-## Default settings, synchronous generation
+### Default settings, synchronous generation
 
 ```jsx
 // @demobox
@@ -45,7 +45,7 @@ function makeFile() {
   genFile={makeFile}/>
 ```
 
-## Asynchronous generation
+### Asynchronous generation
 
 You can also use an asynchronous function to generate the file.
 
@@ -90,7 +90,7 @@ var download = fileData => 'Download ' + fileData.filename;
 </div>
 ```
 
-## Pre-computed file data
+### Pre-computed file data
 
 If you already have the file computed, just pass it in as props.
 

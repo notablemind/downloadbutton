@@ -1,6 +1,6 @@
 <!--
 ---
-title: DownloadButton Demos
+title: DownloadButton
 colors: pink
 fontPair: Fugaz One
 ga: UA-7002862-5
@@ -85,13 +85,13 @@ var DownloadButton = require('downloadbutton/es5')
 ### Props
 [view demo](https://notablemind.github.io/downloadbutton/demo.html)
 
-When `async=true`, the behavior is differnet. See the next section. See a demo
-on [the demo page](demo.md).
+If you generate the file asynchronously, you need to set `async` to true, and
+use the next section.
 
 Name | Type | Description
 --- | --- | ---
-`fileData` | `fileData` | If passed in, genFile will be ignored, and this file will be served.
-`genFile` | `fn () -> fileData` or `fn (done: fn(fileData))` | Synchronous functions can just return the `fileData` object. If the `async` prop is `true`, then `genFile` should accept a callback function.
+`fileData` | [fileData](#the-filedata-type) | If passed in, genFile will be ignored, and this file will be served.
+`genFile` | `fn () ->` [fileData](#the-filedata-type) | Synchronously generate the file data. See [below](#the-filedata-type) for a description of the `fileData` type
 `downloadTitle` | `string` or react element, or `fn (fileData) -> string / react element` | The text shown on the button. If a function, it will be passed the `fileData` in the case that it has been passed in as props. Default: `"Download"`
 
 You must pass in either `fileData` or `genFile`.
@@ -99,8 +99,8 @@ You must pass in either `fileData` or `genFile`.
 ### Props (async=true)
 [view demo](https://notablemind.github.io/downloadbutton/demo.html#asynchronous-generation)
 
-If `fileData` is passed in, the `async` prop is **ignored**, and the component
-will use the synchronous behavior.
+If `fileData` is passed in as a prop, the `async` prop is **ignored**, and the
+component will use the synchronous behavior.
 
 Name | Type | Description
 --- | --- | ---
@@ -116,6 +116,16 @@ Name | Type | Description
   mime: str,
   filename: str,
   content: str
+}
+```
+
+Example:
+
+```json
+{
+  mime: "application/json",
+  filename: "generated.json",
+  content: '{"hello": "world"}'
 }
 ```
 
